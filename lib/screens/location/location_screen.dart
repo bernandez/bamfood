@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class LocationScreen extends StatelessWidget {
   static const String routeName = '/Location';
@@ -12,11 +13,10 @@ class LocationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Location")),
-      body: Center(
-        child: ElevatedButton(onPressed: () {
-          Navigator.pushNamed(context,'/');
-        }, child: Text("Home Screen")),
+      body: Stack(
+        children: [Container(height: MediaQuery.of(context).size.height,
+        width: double.infinity,
+        child: GoogleMap(initialCameraPosition: CameraPosition(target: LatLng(10, 10),zoom: 100)),)],
       ),
     );
     
