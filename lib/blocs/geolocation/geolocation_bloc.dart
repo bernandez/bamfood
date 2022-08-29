@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:html';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:food_delivery_app/repositories/geolocation/geolocation_repository.dart';
@@ -18,10 +16,36 @@ class GeolocationBloc extends Bloc<GeolocationEvent, GeolocationState> {
    _geolocationRepository = geolocationRepository, 
   super(GeolocationLoading()) 
   {
-    on<GeolocationEvent>((event, emit) {
-      // _geolocationSubscription.cancel();
+    Stream<GeolocationState> mapEventToState(
+      GeolocationEvent event,
 
-      // TODO: implement event handler
-    });
+    ) async*{
+      if (event is LoadGeolocation){
+        yield* _mapLoadGeolocationToState();
+      }
+      else if (event is UpdateGeolocation){
+        yield* _mapUpdateGeolocationToState(event);
+      }
+           
+
+    }
+
+  
+}
+Stream<GeolocationState> _mapLoadGeolocationToState() async*{
+    _geolocationSubscription?.cancel();
+
+    final Position position = await _geolocationRepository.getCurrentlocation();
+    add(UpdateGeolocation(position: position));
+  }
+
+Stream<GeolocationState> _mapUpdateGeolocationToState(UpdateGeolocation event) async*{
+  yield GeolocationLoaded(position: event.position);
+  }
+
+  @override
+  Future<void> close() {
+    _geolocationSubscription?.cancel();
+    return super.close();
   }
 }
