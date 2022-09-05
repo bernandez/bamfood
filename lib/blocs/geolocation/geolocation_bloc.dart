@@ -15,20 +15,20 @@ class GeolocationBloc extends Bloc<GeolocationEvent, GeolocationState> {
   GeolocationBloc({required GeolocationRepository geolocationRepository}) : 
    _geolocationRepository = geolocationRepository, 
   super(GeolocationLoading()) 
+
   {
-    Stream<GeolocationState> mapEventToState(
-      GeolocationEvent event,
+    on<LoadGeolocation>((event, emit) {
+      emit(GeolocationLoading ());
+      // TODO: implement event handler
+    });
 
-    ) async*{
-      if (event is LoadGeolocation){
-        yield* _mapLoadGeolocationToState();
-      }
-      else if (event is UpdateGeolocation){
-        yield* _mapUpdateGeolocationToState(event);
-      }
-           
-
-    }
+    // ignore: void_checks
+    on<UpdateGeolocation>((event, emit) {
+      emit(GeolocationLoaded(position: event.position));
+      // ignore: todo
+      // TODO: implement event handler
+    });
+    
 
   
 }
