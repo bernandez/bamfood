@@ -60,6 +60,9 @@ static List<Restaurant> restaurants=[
     description: 'so nice', 
     imageUrl: 'https://media.timeout.com/images/105846896/image.jpg', 
     menuItems: MenuItem.menuItems.where((menuItems) => menuItems.restaurantId == 1).toList(),
+    deliveryTime: 30,
+    deliveryFee: 2.99,
+    distance: 0.1,
     tags: ['achu', 'fufu', 'meat'], 
     ),
   Restaurant(
@@ -69,6 +72,9 @@ static List<Restaurant> restaurants=[
     imageUrl: 'https://media.timeout.com/images/105846896/image.jpg', 
     menuItems: MenuItem.menuItems.where((menuItems) => menuItems.restaurantId == 2).toList(),
     tags: ['achu', 'fufu', 'meat'], 
+    deliveryTime: 30,
+    deliveryFee: 2.99,
+    distance: 0.1,
     ),
   Restaurant(
     id: 3, 
@@ -77,6 +83,9 @@ static List<Restaurant> restaurants=[
     imageUrl: 'https://media.timeout.com/images/105846896/image.jpg', 
     menuItems: MenuItem.menuItems.where((menuItems) => menuItems.restaurantId == 3).toList(),
     tags: ['achu', 'fufu', 'meat'], 
+    deliveryTime: 30,
+    deliveryFee: 2.99,
+    distance: 0.1,
     ),
     Restaurant(
     id: 3, 
@@ -85,6 +94,9 @@ static List<Restaurant> restaurants=[
     imageUrl: 'https://media.timeout.com/images/105846896/image.jpg', 
     menuItems: MenuItem.menuItems.where((menuItems) => menuItems.restaurantId == 3).toList(),
     tags: ['achu', 'fufu', 'meat'], 
+    deliveryTime: 30,
+    deliveryFee: 2.99,
+    distance: 0.1,
     )
 ];
 }

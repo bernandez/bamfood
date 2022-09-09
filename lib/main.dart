@@ -8,6 +8,7 @@ import 'package:food_delivery_app/repositories/geolocation/geolocation_repositor
 import 'package:food_delivery_app/repositories/places/place_repository.dart';
 import 'package:food_delivery_app/screens/home_screen.dart';
 import 'package:food_delivery_app/screens/location/location_screen.dart';
+import 'package:food_delivery_app/screens/restaurant_details_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
         title: 'Food delivery',
         theme: theme(),
         onGenerateRoute: AppRouter.onGenerateRoute,
-        initialRoute: HomeScreen.routeName,
+        initialRoute: RestaurantDetailsScreen.routeName,
         
           ),
       )

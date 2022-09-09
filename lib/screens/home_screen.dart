@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_delivery_app/models/category_model.dart';
 import 'package:food_delivery_app/models/restaurant_model.dart';
+import 'package:food_delivery_app/widgets/restaurant_tags.dart';
 
 import '../models/promo_model.dart';
 
@@ -229,13 +230,7 @@ Padding(
         SizedBox(height: 5,),
         // Text('${restaurant.tags}'),
   
-        Row(
-          children: 
-            restaurant.tags.map((tag) => restaurant.tags.indexOf(tag) == restaurant.tags.length -1?
-            Text(tag): Text('$tag,',style: Theme.of(context).textTheme.bodyText1,)).toList()
-  
-          ,
-        ),
+        RestaurantTags(restaurant: restaurant),
         SizedBox(height: 5,),
   
         Text('${restaurant.distance}km- \$${restaurant.deliveryFee} delivery',style: Theme.of(context).textTheme.bodyText1,)
@@ -250,6 +245,8 @@ Padding(
     
   }
 }
+
+
 
 class CategoryBox extends StatelessWidget {
   final Category category;
