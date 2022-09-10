@@ -14,6 +14,7 @@ class RestaurantInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.white,
       
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(
@@ -27,7 +28,7 @@ class RestaurantInformation extends StatelessWidget {
           RestaurantTags(restaurant: restaurant),
           SizedBox(height: 5,),
           Text('${restaurant.distance}km- \$${restaurant.deliveryFee} delivery', style: Theme.of(context).textTheme.headline3!.copyWith(
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.primary,
           ),
           ),
           SizedBox(height: 5,),

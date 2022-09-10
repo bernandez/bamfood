@@ -3,17 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery_app/models/models.dart';
 import 'package:food_delivery_app/models/restaurant_model.dart';
 
+
 class RestaurantDetailsScreen extends StatelessWidget {
   static const String routeName = '/restaurant-details';
 
-  static Route route(){
-    return MaterialPageRoute(builder: (_) => RestaurantDetailsScreen(), settings: RouteSettings(name:routeName));
+  static Route route({required Restaurant restaurant}){
+    return MaterialPageRoute(builder: (_) => RestaurantDetailsScreen(restaurant: restaurant), settings: RouteSettings(name:routeName));
   }
-  const RestaurantDetailsScreen({Key? key}) : super(key: key);
+  
+
+
+final Restaurant restaurant;
+// ignore: use_key_in_widget_constructors
+const RestaurantDetailsScreen({required this.restaurant,});
 
   @override
   Widget build(BuildContext context) {
-    Restaurant restaurant = Restaurant.restaurants[0];
+    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -24,6 +30,7 @@ class RestaurantDetailsScreen extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center ,
             children: [
+              
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(
@@ -53,11 +60,16 @@ class RestaurantDetailsScreen extends StatelessWidget {
 
             ),
             RestaurantInformation(restaurant: restaurant),
-            ListView.builder(
-              itemCount: restaurant.tags.length,
-              itemBuilder: ((context, index) {
-                return _buildMenuItem(restaurant, context, index);
-              }))
+          ListView.builder(
+            padding: EdgeInsets.zero,
+            physics: const NeverScrollableScrollPhysics(),
+                
+                shrinkWrap: true,
+                itemCount: restaurant.tags.length,
+                itemBuilder: ((context, index) {
+                  return _buildMenuItem(restaurant, context, index);
+                })),
+            
           ],
         ),
 
@@ -75,7 +87,7 @@ Widget _buildMenuItem(Restaurant restaurant, BuildContext context, int index){
        Padding(
          padding: const EdgeInsets.symmetric(horizontal:20, vertical: 10),
          child: Text(restaurant.tags[index], style: Theme.of(context).textTheme.headline3!.copyWith(
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).colorScheme.primary,
          ),),
        ),
        Column(
@@ -83,22 +95,36 @@ Widget _buildMenuItem(Restaurant restaurant, BuildContext context, int index){
         .where((menuItem) => menuItem.category == restaurant.tags[index])
         .map(
           (menuItem) => Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              child: ListTile(
-                title: Text(menuItem.name),
-                subtitle: Text(menuItem.description),
-                trailing: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  mainAxisSize: MainAxisSize.min,
-children: [Text('\$${menuItem.price}'),
-IconButton(onPressed: () {}, icon: Icon(Icons.add_circle,
-color: Theme.of(context).primaryColor,
-))],
+            
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: ListTile(
+                  dense: true,
+                  contentPadding: EdgeInsets.zero,
+                
+                  title: Text(menuItem.name,style: Theme.of(context).textTheme.headline5,),
+                  subtitle: Text(menuItem.description),
+                  trailing: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisSize: MainAxisSize.min,
+                 children: [Text('\$${menuItem.price}', style: Theme.of(context).textTheme.headline5,),
+                          
+                          IconButton(
+                            onPressed: () {}, 
+                            icon: Icon(
+                              Icons.add_circle,
+                          color: Theme.of(context).colorScheme.primary,
+                 )
+                 )
+                 ],
 
-                ),
-                ),
-                )
+                  ),
+                  ),
+              ),
+              Divider(height: 2,)
+                
           ],
         ),
         ).toList()

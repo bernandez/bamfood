@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         title: 'Food delivery',
         theme: theme(),
         onGenerateRoute: AppRouter.onGenerateRoute,
-        initialRoute: RestaurantDetailsScreen.routeName,
+        initialRoute: HomeScreen.routeName,
         
           ),
       )

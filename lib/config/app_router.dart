@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/models/models.dart';
 import 'package:food_delivery_app/screens/basket_screen.dart';
 import 'package:food_delivery_app/screens/delivery_time_screen.dart';
 import 'package:food_delivery_app/screens/edit_basket_screen.dart';
@@ -6,12 +7,14 @@ import 'package:food_delivery_app/screens/filter_screen.dart';
 import 'package:food_delivery_app/screens/home_screen.dart';
 import 'package:food_delivery_app/screens/location/location_screen.dart';
 import 'package:food_delivery_app/screens/restaurant_details_screen.dart';
+import 'package:food_delivery_app/screens/restaurant_listing_screen.dart';
 import 'package:food_delivery_app/screens/voucher_screen.dart';
 
 class AppRouter {
   static Route onGenerateRoute(RouteSettings settings){
     print('the route is: ${settings.name}');
 
+    
     switch (settings.name) {
       case HomeScreen.routeName:
         return HomeScreen.route();
@@ -27,8 +30,15 @@ class AppRouter {
         return DeliveryTimeScreen.route();
       case EditBasketScreen.routeName:
         return EditBasketScreen.route();
+      case RestaurantListingScreen.routeName:
+         return RestaurantListingScreen.route(
+          restaurant:  settings.arguments as List<Restaurant>
+         );
       case RestaurantDetailsScreen.routeName:
-        return RestaurantDetailsScreen.route();
+        return RestaurantDetailsScreen.route(
+              restaurant: settings.arguments as Restaurant
+
+        );
 
       default:
         return _errorRoute();
