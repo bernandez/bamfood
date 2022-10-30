@@ -31,9 +31,9 @@ class HomeScreen extends StatelessWidget {
               child: ListView.builder(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
-                itemCount:  Category.categories.length,
+                itemCount:  Price.categories.length,
                 itemBuilder: (context, index) {
-                  return CategoryBox(category: Category.categories[index]);
+                  return CategoryBox(category: Price.categories[index]);
                 }),
             ),
             ),
@@ -108,7 +108,9 @@ class foodsearchbox extends StatelessWidget {
         Container(
           width: 50,
           height: 50,
-          child: IconButton(onPressed: () {}, icon: Icon(Icons.menu, color: Theme.of(context).colorScheme.primary,))
+          child: IconButton(onPressed: () {
+            Navigator.pushNamed(context, '/filter');
+          }, icon: Icon(Icons.menu, color: Theme.of(context).colorScheme.primary,))
         )
       ],
     );
@@ -254,7 +256,7 @@ class RestaurantCard extends StatelessWidget {
 
 
 class CategoryBox extends StatelessWidget {
-  final Category category;
+  final Price category;
   const CategoryBox({Key? key, required this.category}) : super(key: key);
 
   @override

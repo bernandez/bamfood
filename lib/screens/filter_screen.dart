@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 class FilterScreen extends StatelessWidget {
-  static const String routeName = '/';
+  static const String routeName = '/filter';
 
   static Route route(){
     return MaterialPageRoute(builder: (_) => FilterScreen(), settings: RouteSettings(name:routeName));
@@ -12,11 +12,11 @@ class FilterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Home")),
+      appBar: AppBar(title: Text("Filter")),
       body: Center(
         child: ElevatedButton(onPressed: () {
-          Navigator.pushNamed(context,'/Location');
-        }, child: Text("Location Screen")),
+          Navigator.pushNamed(context,'/');
+        }, child: Text("Home")),
       ),
     );
     

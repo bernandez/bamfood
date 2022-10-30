@@ -68,7 +68,10 @@ const RestaurantDetailsScreen({required this.restaurant,});
                 itemCount: restaurant.tags.length,
                 itemBuilder: ((context, index) {
                   return _buildMenuItem(restaurant, context, index);
-                })),
+                }
+                )
+                ),
+            
             
           ],
         ),
@@ -88,7 +91,8 @@ Widget _buildMenuItem(Restaurant restaurant, BuildContext context, int index){
          padding: const EdgeInsets.symmetric(horizontal:20, vertical: 10),
          child: Text(restaurant.tags[index], style: Theme.of(context).textTheme.headline3!.copyWith(
           color: Theme.of(context).colorScheme.primary,
-         ),),
+         ),
+         ),
        ),
        Column(
         children: restaurant.menuItems
@@ -116,6 +120,7 @@ Widget _buildMenuItem(Restaurant restaurant, BuildContext context, int index){
                             icon: Icon(
                               Icons.add_circle,
                           color: Theme.of(context).colorScheme.primary,
+                          
                  )
                  )
                  ],
@@ -129,7 +134,6 @@ Widget _buildMenuItem(Restaurant restaurant, BuildContext context, int index){
         ),
         ).toList()
        )
-
     ],
   );
 }
